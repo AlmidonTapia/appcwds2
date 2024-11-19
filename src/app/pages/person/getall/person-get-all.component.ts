@@ -6,7 +6,7 @@ import { PersonService } from '../../../api/person.service';
 	standalone: true,
 	imports: [],
 	templateUrl: './person-get-all.component.html',
-	styleUrl: './person-get-all.component.scss'
+	styleUrl: './person-get-all.component.css'
 })
 
 export class PersonGetAllComponent {

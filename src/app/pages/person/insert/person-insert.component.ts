@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 	standalone: true,
 	imports: [],
 	templateUrl: './person-insert.component.html',
-	styleUrl: './person-insert.component.scss'
+	styleUrl: './person-insert.component.css'
 })
 
 export class PersonInsertComponent {}
