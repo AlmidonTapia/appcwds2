@@ -1,25 +1,26 @@
 import { Component } from '@angular/core';
 import { PersonService } from '../../../api/person.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
 	selector: 'person-get-all',
 	standalone: true,
-	imports: [],
+	imports: [CommonModule],
 	templateUrl: './person-get-all.component.html',
 	styleUrl: './person-get-all.component.css'
 })
 
 export class PersonGetAllComponent {
-	person: any = {};
+	listPerson: any[] = [];
 
 	constructor(
 		private personService: PersonService
 	) {}
 
 	ngOnInit() {
-		this.personService.getData().subscribe({
+		this.personService.getAll().subscribe({
 			next: (response: any) => {
-				this.person = response;
+				this.listPerson = response.response.listPerson;
 			},
 			error: (error: any) => {
 				console.log(error);

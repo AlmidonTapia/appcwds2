@@ -13,16 +13,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>{{person.dni}}</td>
-						<td>{{person.firstName}}</td>
-						<td>{{person.surName}}</td>
+					<tr *ngFor="let item of listPerson">
+						<td>{{item.dni}}</td>
+						<td>{{item.firstName}}</td>
+						<td>{{item.surName}}</td>
 					</tr>
-					<tr>
-						<td>{{person.dni}}</td>
-						<td>{{person.firstName}}</td>
-						<td>{{person.surName}}</td>
-					</tr>   
 				</tbody>
 			</table>
 		</div>

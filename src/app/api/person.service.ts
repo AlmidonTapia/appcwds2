@@ -12,6 +12,14 @@ export class PersonService {
 	) {}
 
 	public getData(): Observable<any> {
-		return this.httpClient.get(`http://localhost:8080/person/getdata`).pipe(retry(3));
+		return this.httpClient.get(`http://localhost:8080/person/getdata`);
+	}
+
+	public insert(formData: FormData): Observable<any> {
+		return this.httpClient.post(`http://localhost:8080/person/insert`, formData);
+	}
+
+	public getAll(): Observable<any> {
+		return this.httpClient.get(`http://localhost:8080/person/getAll`);
 	}
 }

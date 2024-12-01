@@ -4,39 +4,43 @@
 			<h5>Registrar persona</h5>
 		</div>
 		<div class="card-body">
-			<form>
+			<form [formGroup]="frmPersonInsert">
 				<div class="row">
 					<div class="col-md-3 mb-3">
 						<label for="dni" class="form-label">DNI</label>
-						<input type="text" class="form-control" id="dni" placeholder="Obligatorio">
+						<input type="text" formControlName="dni" class="form-control" id="dni"
+							placeholder="Obligatorio">
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="firstName" class="form-label">Nombre</label>
-						<input type="text" class="form-control" id="firstName" placeholder="Obligatorio">
+						<input type="text" formControlName="firstName" class="form-control" id="firstName"
+							placeholder="Obligatorio">
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="surName" class="form-label">Apellido</label>
-						<input type="text" class="form-control" id="surName" placeholder="Obligatorio">
+						<input type="text" formControlName="surName" class="form-control" id="surName"
+							placeholder="Obligatorio">
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="email" class="form-label">Correo</label>
-						<input type="text" class="form-control" id="email" placeholder="Obligatorio">
+						<input type="text" formControlName="email" class="form-control" id="email"
+							placeholder="Obligatorio">
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="birthDate" class="form-label">Fecha de Nacimiento</label>
-						<input type="date" class="form-control" id="birthDate">
+						<input type="date" formControlName="birthDate" class="form-control" id="birthDate">
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="gender" class="form-label">Género</label>
-						<select class="form-select" id="gender">
-							<option value="Masculino">Masculino</option>
-							<option value="Femenino">Femenino</option>
+						<select formControlName="gender" class="form-select" id="gender">
+							<option value="1">Masculino</option>
+							<option value="0">Femenino</option>
 						</select>
 					</div>
 				</div>
 				<hr>
 				<div class="d-flex justify-content-end">
-					<button type="submit" class="btn btn-primary">Registrar datos</button>
+					<button type="submit" class="btn btn-primary" (click)="save()">Registrar datos</button>
 				</div>
 			</form>
 		</div>
