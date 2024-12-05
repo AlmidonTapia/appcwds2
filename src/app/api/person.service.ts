@@ -25,4 +25,8 @@ export class PersonService {
 	public delete(idPerson: string): Observable<any> {
 		return this.httpClient.delete(`http://localhost:8080/person/delete/${idPerson}`);
 	}
+
+	public update(formData: FormData): Observable<any> {
+		return this.httpClient.post('http://localhost:8080/person/update', formData);
+	}
 }

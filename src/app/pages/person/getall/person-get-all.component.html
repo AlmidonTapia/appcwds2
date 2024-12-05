@@ -14,12 +14,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let value of listPerson">
+					<tr *ngFor="let value of listPerson; let i = index">
 						<td>{{value.firstName}}</td>
 						<td>{{value.surName}}</td>
 						<td>{{value.dni}}</td>
 						<td class="text-center">
-							<button class="btn btn-warning btn-sm me-2 text-white"><i class="bi bi-pencil-square"></i>
+							<button class="btn btn-warning btn-sm me-2 text-white"
+								(click)="showModal(modaEditPerson, i)"><i class="bi bi-pencil-square"></i>
 								Editar</button>
 							<button class="btn btn-danger btn-sm text-white" (click)="delete(value.idPerson)"><i
 									class="bi bi-trash3"></i> Eliminar</button>
@@ -31,6 +32,55 @@
 		<ng-template #noData>
 			<div class="alert alert-info mx-3 mt-3 text-center" role="alert">
 				No hay datos disponibles
+			</div>
+		</ng-template>
+		<ng-template #modaEditPerson>
+			<div class="modal-header">
+				<h4 class="modal-title pull-left">Modificar datos de persona</h4>
+			</div>
+			<div class="modal-body">
+				<form [formGroup]="frmEditPerson">
+					<div class="row">
+						<div class="col-md-6 mb-6">
+							<label for="" class="form-label">Nombre</label>
+							<input type="text" formControlName="firstName" class="form-control">
+						</div>
+						<div class="col-md-6 mb-6">
+							<label for="" class="form-label">Apellido</label>
+							<input type="text" formControlName="surName" class="form-control">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-6">
+							<label for="" class="form-label">DNI</label>
+							<input type="text" formControlName="dni" class="form-control">
+						</div>
+						<div class="col-md-6 mb-6">
+							<label for="" class="form-label">Género</label>
+							<div class="radioGroup">
+								<label for="">
+									Masculino
+									<input type="radio" formControlName="gender" value="true">
+								</label>
+								<label for="">
+									Femenino
+									<input type="radio" formControlName="gender" value="false">
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-6">
+							<label for="" class="form-label">Fecha de nacimiento</label>
+							<input type="date" formControlName="birthDate" class="form-control">
+						</div>
+					</div>
+				</form>
+			</div>
+			<hr>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar modal</button>
+				<button class="btn btn-primary" (click)="onClickSaveChanges()">Guardar cambios</button>
 			</div>
 		</ng-template>
 	</div>
