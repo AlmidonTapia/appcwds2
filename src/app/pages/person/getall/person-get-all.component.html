@@ -35,8 +35,8 @@
 			</div>
 		</ng-template>
 		<ng-template #modaEditPerson>
-			<div class="modal-header">
-				<h4 class="modal-title pull-left">Modificar datos de persona</h4>
+			<div class="modal-header text-center">
+				<h4 class="modal-title w-100">Modificar datos de persona</h4>
 			</div>
 			<div class="modal-body">
 				<form [formGroup]="frmEditPerson">
@@ -58,13 +58,13 @@
 						<div class="col-md-6 mb-6">
 							<label for="" class="form-label">Género</label>
 							<div class="radioGroup">
-								<label for="">
-									Masculino
+								<label for="" class="me-2">
 									<input type="radio" formControlName="gender" value="true">
+									Masculino
 								</label>
-								<label for="">
-									Femenino
+								<label for="">			
 									<input type="radio" formControlName="gender" value="false">
+									Femenino
 								</label>
 							</div>
 						</div>
@@ -79,8 +79,8 @@
 			</div>
 			<hr>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" (click)="closeModal()">Cerrar modal</button>
-				<button class="btn btn-primary" (click)="onClickSaveChanges()">Guardar cambios</button>
+				<button type="button" class="btn btn-secondary" (click)="closeModal()"><i class="bi bi-x"></i> Cerrar modal</button>
+				<button class="btn btn-primary" (click)="onClickSaveChanges()"><i class="bi bi-check-lg"></i> Guardar cambios</button>
 			</div>
 		</ng-template>
 	</div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { PersonService } from '../../../api/person.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'person-insert',
@@ -22,8 +23,10 @@ export class PersonInsertComponent {
 	get genderFb() { return this.frmPersonInsert.controls['gender']; }
 
 	constructor(
+		private personService: PersonService,
+		private router: Router,
 		private formBuilder: FormBuilder,
-		private personService: PersonService
+
 	) {
 		this.frmPersonInsert = this.formBuilder.group({
 			dni: ['', null],
@@ -47,10 +50,16 @@ export class PersonInsertComponent {
 		this.personService.insert(formData).subscribe({
 			next: (response: any) => {
 				console.log(response);
+				this.goToList();
 			},
 			error: (error: any) => {
 				console.log(error);
+				this.goToList();
 			}
 		});
+	}
+
+	public goToList(): void {
+		this.router.navigate(['/person/getall']);
 	}
 }

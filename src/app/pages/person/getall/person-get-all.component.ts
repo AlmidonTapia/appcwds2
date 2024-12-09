@@ -99,9 +99,10 @@ listPerson: any[] = [];
 					this.listPerson[this.indexToModify].gender = this.genderFb.value == 'true';
 					this.listPerson[this.indexToModify].birthDate = this.birthDateFb.value;
 
-					this.modalService.hide();
+				this.modalService.hide();
 				},
 			error: (error: any) => {
+				this.modalService.hide(); // temporal				
 				console.log(error);}
 		});
 	}

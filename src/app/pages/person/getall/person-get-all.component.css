@@ -1,12 +1,10 @@
-
-
 .no-data {
-    background-color: #e0f7fa; /* Color de fondo para el mensaje */
-    padding: 10px 20px; /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
-    margin-top: 20px; /* Espacio entre el título y el mensaje */
+    background-color: #51e995;
+    padding: 10px 20px;
+    border-radius: 5px; 
+    margin-top: 20px;
 }
 
 h2 {
-    margin: 0; /* Elimina margen por defecto del encabezado */
+    margin: 0;
 }
