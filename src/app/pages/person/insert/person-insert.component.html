@@ -10,6 +10,16 @@
 						<label for="dni" class="form-label">DNI</label>
 						<input type="text" formControlName="dni" class="form-control" id="dni"
 							placeholder="Obligatorio">
+							@if ((dniFb.touched || dniFb.dirty) && dniFb.errors && dniFb.hasError('required')) {
+								<div class="invalid-feedback">
+									Este campo es requerido
+								</div>
+							}
+							@if ((dniFb.touched || dniFb.dirty) && dniFb.errors && dniFb.hasError('pattern')) {
+								<div class="invalid-feedback">
+									Formato incorrecto.
+								</div>
+							}
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="firstName" class="form-label">Nombre</label>
@@ -25,6 +35,16 @@
 						<label for="email" class="form-label">Correo</label>
 						<input type="text" formControlName="email" class="form-control" id="email"
 							placeholder="Obligatorio">
+							@if ((emailFb.touched || emailFb.dirty) && emailFb.errors && emailFb.hasError('required')) {
+								<div class="invalid-feedback">
+									Este campo es requerido
+								</div>
+							}
+							@if ((emailFb.touched || emailFb.dirty) && emailFb.errors && emailFb.hasError('pattern')) {
+								<div class="invalid-feedback">
+									Formato incorrecto.
+								</div>
+							}
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="birthDate" class="form-label">Fecha de Nacimiento</label>
