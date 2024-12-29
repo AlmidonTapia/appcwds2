@@ -3,11 +3,14 @@ import { PersonService } from '../../../api/person.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, UntypedFormGroup,  FormBuilder} from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
+import { NotifyComponent } from '../../../component/notify/notify.component';
+
 
 @Component({
 	selector: 'person-get-all',
 	standalone: true,
-	imports: [CommonModule, FormsModule, ReactiveFormsModule],
+	imports: [CommonModule, FormsModule, ReactiveFormsModule, NotifyComponent],
 	providers: [BsModalService],
 	templateUrl: './person-get-all.component.html',
 	styleUrl: './person-get-all.component.css'
@@ -27,10 +30,15 @@ export class PersonGetAllComponent {
 	
 listPerson: any[] = [];
 
+	typeResponse: string = '';
+	listMessageResponse: string[] = [];
+
 	constructor(
 		private formBuilder: FormBuilder,
 		private personService: PersonService,
-		private modalService: BsModalService
+		private modalService: BsModalService,
+		private router: Router,
+
 	) {
 		
 		this.frmEditPerson = this.formBuilder.group({
@@ -53,10 +61,30 @@ listPerson: any[] = [];
 			}
 		});
 	}
-	delete(idPerson: string): void{
+	//metodo para recargar datos de la tabla en caso de errores de carga
+	loadData(): void {
+		this.personService.getAll().subscribe({
+			next: (response: any) => {
+				this.listPerson = response.response.listPerson;
+			},
+			error: (error: any) => {
+				console.log(error);
+			}
+		});	
+	}
+
+	delete(idPerson: string): void {
 		this.personService.delete(idPerson).subscribe({
 			next: (response: any) => {
-				this.listPerson = this.listPerson.filter(x => x.idPerson !== idPerson);
+				this.typeResponse = response.mo.type;
+				this.listMessageResponse = response.mo.listMessage;
+
+				switch (response.mo.type) {
+					case 'success':
+						this.listPerson = this.listPerson.filter(x => x.idPerson != idPerson);
+
+						break;
+				}
 			},
 			error: (error: any) => {
 				console.log(error);
@@ -94,16 +122,22 @@ listPerson: any[] = [];
 		this.personService.update(formData).subscribe({
 			next: (response: any) => {
 				this.listPerson[this.indexToModify].firstName = this.firstNameFb.value;
-					this.listPerson[this.indexToModify].surName = this.surNameFb.value;
-					this.listPerson[this.indexToModify].dni = this.dniFb.value;
-					this.listPerson[this.indexToModify].gender = this.genderFb.value == 'true';
-					this.listPerson[this.indexToModify].birthDate = this.birthDateFb.value;
+				this.listPerson[this.indexToModify].surName = this.surNameFb.value;
+				this.listPerson[this.indexToModify].dni = this.dniFb.value;
+				this.listPerson[this.indexToModify].gender = this.genderFb.value == 'true';
+				this.listPerson[this.indexToModify].birthDate = this.birthDateFb.value;
 
 				this.modalService.hide();
-				},
+				this.loadData();
+			},
 			error: (error: any) => {
 				this.modalService.hide(); // temporal				
-				console.log(error);}
+				console.log(error);
+				this.loadData();
+			}
 		});
+	}
+	public goToList(): void {
+		this.router.navigate(['/']);
 	}
 }

@@ -1,4 +1,5 @@
 <div class="container mt-4">
+		<app-notify [type]="typeResponse" [listMessage]="listMessageResponse"></app-notify>
 	<div class="card">
 		<div class="card-header text-center">
 			<h5>Lista de Personas</h5>
@@ -10,6 +11,7 @@
 						<th scope="col">Nombre</th>
 						<th scope="col">Apellidos</th>
 						<th scope="col">N° DNI</th>
+						<th scope="col">Genero</th>
 						<th scope="col">Acciones</th>
 					</tr>
 				</thead>
@@ -18,6 +20,7 @@
 						<td>{{value.firstName}}</td>
 						<td>{{value.surName}}</td>
 						<td>{{value.dni}}</td>
+						<td>{{value.gender ? 'Masculino' : 'Femenino'}}</td>
 						<td class="text-center">
 							<button class="btn btn-warning btn-sm me-2 text-white"
 								(click)="showModal(modaEditPerson, i)"><i class="bi bi-pencil-square"></i>

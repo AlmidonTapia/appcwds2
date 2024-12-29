@@ -1,4 +1,5 @@
 <div class="container mt-4">
+		<app-notify [type]="typeResponse" [listMessage]="listMessageResponse"></app-notify>
 	<div class="card">
 		<div class="card-header">
 			<h5>Registrar persona</h5>
@@ -8,47 +9,38 @@
 				<div class="row">
 					<div class="col-md-3 mb-3">
 						<label for="dni" class="form-label">DNI</label>
-						<input type="text" formControlName="dni" class="form-control" id="dni"
-							placeholder="Obligatorio">
-							@if ((dniFb.touched || dniFb.dirty) && dniFb.errors && dniFb.hasError('required')) {
-								<div class="invalid-feedback">
-									Este campo es requerido
-								</div>
-							}
-							@if ((dniFb.touched || dniFb.dirty) && dniFb.errors && dniFb.hasError('pattern')) {
-								<div class="invalid-feedback">
-									Formato incorrecto.
-								</div>
-							}
+						<input type="text" formControlName="dni" class="form-control" id="dni" placeholder="Obligatorio">
+						<div *ngIf="(dniFb.touched || dniFb.dirty) && dniFb.errors && dniFb.hasError('required')" class="divError">
+							Este campo es requerido.</div>
+						<div *ngIf="(dniFb.touched || dniFb.dirty) && dniFb.errors && dniFb.hasError('pattern')" class="divError">
+							Formato incorrecto.</div>
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="firstName" class="form-label">Nombre</label>
 						<input type="text" formControlName="firstName" class="form-control" id="firstName"
 							placeholder="Obligatorio">
+						<div *ngIf="(firstNameFb.touched || firstNameFb.dirty) && firstNameFb.errors && firstNameFb.hasError('required')"
+							class="divError">Este campo es requerido.</div>
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="surName" class="form-label">Apellido</label>
-						<input type="text" formControlName="surName" class="form-control" id="surName"
-							placeholder="Obligatorio">
+						<input type="text" formControlName="surName" class="form-control" id="surName" placeholder="Obligatorio">
+						<div *ngIf="(surNameFb.touched || surNameFb.dirty) && surNameFb.errors && surNameFb.hasError('required')"
+							class="divError">Este campo es requerido.</div>
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="email" class="form-label">Correo</label>
-						<input type="text" formControlName="email" class="form-control" id="email"
-							placeholder="Obligatorio">
-							@if ((emailFb.touched || emailFb.dirty) && emailFb.errors && emailFb.hasError('required')) {
-								<div class="invalid-feedback">
-									Este campo es requerido
-								</div>
-							}
-							@if ((emailFb.touched || emailFb.dirty) && emailFb.errors && emailFb.hasError('pattern')) {
-								<div class="invalid-feedback">
-									Formato incorrecto.
-								</div>
-							}
+						<input type="text" formControlName="email" class="form-control" id="email" placeholder="Obligatorio">
+						<div *ngIf="(emailFb.touched || emailFb.dirty) && emailFb.errors && emailFb.hasError('required')"
+							class="divError">Este campo es requerido.</div>
+						<div *ngIf="(emailFb.touched || emailFb.dirty) && emailFb.errors && emailFb.hasError('pattern')"
+							class="divError">Formato incorrecto.</div>
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="birthDate" class="form-label">Fecha de Nacimiento</label>
 						<input type="date" formControlName="birthDate" class="form-control" id="birthDate">
+						<div *ngIf="(birthDateFb.touched || birthDateFb.dirty) && birthDateFb.errors && birthDateFb.hasError('required')"
+							class="divError">Este campo es requerido.</div>
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="gender" class="form-label">Género</label>
@@ -56,12 +48,13 @@
 							<option value="1">Masculino</option>
 							<option value="0">Femenino</option>
 						</select>
+						<div *ngIf="(genderFb.touched || genderFb.dirty) && genderFb.errors && genderFb.hasError('required')"
+							class="divError">Este campo es requerido.</div>
 					</div>
 				</div>
 				<hr>
 				<div class="d-flex justify-content-end">
-					<button type="submit" class="btn btn-primary me-2" (click)="save()"><i class="bi bi-check-lg"></i> Registrar datos</button>
-					<button type="submit" class="btn btn-danger" (click)="goToList()"><i class="bi bi-x"></i> Cancelar</button>
+					<button type="submit" class="btn btn-primary" (click)="save()">Registrar datos</button>
 				</div>
 			</form>
 		</div>
