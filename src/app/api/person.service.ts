@@ -20,8 +20,9 @@ export class PersonService {
 	}
 
 	public getAll(): Observable<any> {
-		return this.httpClient.get(`http://localhost:8080/person/getAll`);
+		return this.httpClient.get(`http://localhost:8080/person/getall`);
 	}
+
 	public delete(idPerson: string): Observable<any> {
 		return this.httpClient.delete(`http://localhost:8080/person/delete/${idPerson}`);
 	}
