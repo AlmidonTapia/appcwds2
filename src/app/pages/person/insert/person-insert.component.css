@@ -1,6 +1,6 @@
-.invalid-feedback{
+.divError{
     color: red;
-    font-size: 12px;
+    font-size: 14px;
     margin-top: 5px;
     margin-bottom: 0
 }

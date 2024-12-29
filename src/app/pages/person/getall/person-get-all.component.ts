@@ -54,23 +54,12 @@ listPerson: any[] = [];
 	ngOnInit() {
 		this.personService.getAll().subscribe({
 			next: (response: any) => {
-				this.listPerson = response.response.listPerson;
+				this.listPerson = response.dto.listPerson;
 			},
 			error: (error: any) => {
 				console.log(error);
 			}
 		});
-	}
-	//metodo para recargar datos de la tabla en caso de errores de carga
-	loadData(): void {
-		this.personService.getAll().subscribe({
-			next: (response: any) => {
-				this.listPerson = response.response.listPerson;
-			},
-			error: (error: any) => {
-				console.log(error);
-			}
-		});	
 	}
 
 	delete(idPerson: string): void {
@@ -128,12 +117,10 @@ listPerson: any[] = [];
 				this.listPerson[this.indexToModify].birthDate = this.birthDateFb.value;
 
 				this.modalService.hide();
-				this.loadData();
 			},
 			error: (error: any) => {
 				this.modalService.hide(); // temporal				
 				console.log(error);
-				this.loadData();
 			}
 		});
 	}
