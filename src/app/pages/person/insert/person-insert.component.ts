@@ -24,6 +24,7 @@ import { NotifyComponent } from '../../../component/notify/notify.component';
 })
 export class PersonInsertComponent {
   frmPersonInsert: UntypedFormGroup;
+  passwordMismatch: boolean = false;
 
   get dniFb() { return this.frmPersonInsert.controls['dni']; }
   get firstNameFb() { return this.frmPersonInsert.controls['firstName']; }
@@ -31,6 +32,8 @@ export class PersonInsertComponent {
   get emailFb() { return this.frmPersonInsert.controls['email']; }
   get birthDateFb() { return this.frmPersonInsert.controls['birthDate']; }
   get genderFb() { return this.frmPersonInsert.controls['gender']; }
+  get passwordFb(){return this.frmPersonInsert.controls['password'];}
+  get confirmPasswordFb(){return this.frmPersonInsert.controls['confirmPassword'];}
 
   typeResponse: string = '';
   listMessageResponse: string[] = [];
@@ -41,22 +44,29 @@ export class PersonInsertComponent {
     private formBuilder: FormBuilder
   ) {
     this.frmPersonInsert = this.formBuilder.group({
-      dni: ['', [Validators.required, Validators.pattern(/^[0-9]{8}$/)]],
+      dni: ['', [Validators.required, Validators.pattern(/^[0-9]{8}$/)]], 
       firstName: ['', [Validators.required]],
       surName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern(/^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})?$/)]],
       birthDate: ['', [Validators.required]],
-      gender: ['', [Validators.required]]
+      gender: ['', [Validators.required]],
+      password:['',[Validators.required]],
+      confirmPassword:['',[Validators.required]]
     });
   }
+    ngOnInit(): void {
+      this.frmPersonInsert.get('confirmPassword')?.valueChanges.subscribe(() => {
+        this.passwordMismatch = this.frmPersonInsert.get('password')?.value !== this.frmPersonInsert.get('confirmPassword')?.value;
+      });
+    }
 
   public save(): void {
-    if (!this.frmPersonInsert.valid) {
+    if (!this.frmPersonInsert.valid && this.passwordMismatch) {
       this.frmPersonInsert.markAllAsTouched();
-      this.frmPersonInsert.markAsDirty();
+     this.frmPersonInsert.markAsDirty();
 
-      return;
-    }
+       return;
+     }
 
     let formData = new FormData();
 
@@ -65,6 +75,8 @@ export class PersonInsertComponent {
     formData.append('surName', this.surNameFb.value);
     formData.append('birthDate', this.birthDateFb.value);
     formData.append('gender', this.genderFb.value);
+    formData.append('email', this.emailFb.value);
+    formData.append('password', this.passwordFb.value);
 
     this.personService.insert(formData).subscribe({
       next: (response: any) => {

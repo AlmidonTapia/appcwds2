@@ -51,10 +51,32 @@
 						<div *ngIf="(genderFb.touched || genderFb.dirty) && genderFb.errors && genderFb.hasError('required')"
 							class="divError">Este campo es requerido.</div>
 					</div>
+
+					<!-- Campo de Contraseña -->
+					<div class="col-md-3 mb-3">
+						<label for="password" class="form-label">Contraseña</label>
+						<input type="password" formControlName="password" class="form-control" id="password" placeholder="Obligatorio">
+						<div *ngIf="(passwordFb.touched || passwordFb.dirty) && passwordFb.errors && passwordFb.hasError('required')"
+							class="divError">
+							Este campo es requerido.
+						</div>
+					</div>
+					
+					<!-- Campo de Verificación de Contraseña -->
+					<div class="col-md-3 mb-3">
+						<label for="confirmPassword" class="form-label">Verificar Contraseña</label>
+						<input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword"
+							placeholder="Obligatorio">
+						<div *ngIf="(confirmPasswordFb.touched || confirmPasswordFb.dirty) && confirmPasswordFb.errors && confirmPasswordFb.hasError('required')"
+							class="divError">
+							Este campo es requerido.
+						</div>
+						<div *ngIf="passwordMismatch" class="divError">Las contraseñas no coinciden.</div>
+					</div>		
 				</div>
 				<hr>
-				<div class="d-flex justify-content-end">
-					<button type="submit" class="btn btn-primary" (click)="save()">Registrar datos</button>
+				<div class="d-flex mt-2 justify-content-end">
+					<button type="submit" class="btn  btn-primary" (click)="save()">Registrar datos</button>
 				</div>
 			</form>
 		</div>

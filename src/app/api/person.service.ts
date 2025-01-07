@@ -41,4 +41,8 @@ export class PersonService {
 		// backsito de .net
 		// return this.httpClient.post(`http://localhost:5191/person/update`, formData);
 	}
+
+	public login(formData: FormData): Observable<any> {
+		return this.httpClient.post<any>('http://localhost:8080/person/login', formData).pipe(retry(3));
+	}
 }
