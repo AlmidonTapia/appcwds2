@@ -1,6 +1,5 @@
 import { PersonInsertComponent } from './pages/person/insert/person-insert.component';
 import { PersonGetAllComponent } from './pages/person/getall/person-get-all.component';
-import { LoginComponent } from './login/login.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -10,9 +9,6 @@ export const routes: Routes = [
 	pathMatch: 'full',
 	title: 'Home'	
 	},
-	{ 
-	path: 'person/login',
-	component: LoginComponent },
 	{
 	path: 'person/insert',
 	component: PersonInsertComponent,
