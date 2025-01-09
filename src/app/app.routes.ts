@@ -1,17 +1,18 @@
-import { Routes } from '@angular/router';
 import { PersonInsertComponent } from './pages/person/insert/person-insert.component';
 import { PersonGetAllComponent } from './pages/person/getall/person-get-all.component';
 import { LoginComponent } from './login/login.component';
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
 	{ 
 	path: '',
-	redirectTo: '',
+	redirectTo: '/',
 	pathMatch: 'full',
 	title: 'Home'	
 	},
-	{ path: 'person/login',
-		 component: LoginComponent },
+	{ 
+	path: 'person/login',
+	component: LoginComponent },
 	{
 	path: 'person/insert',
 	component: PersonInsertComponent,
